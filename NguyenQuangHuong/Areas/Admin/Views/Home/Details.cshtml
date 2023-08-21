@@ -1,0 +1,67 @@
+﻿@model NguyenQuangHuong.Models.ServiceBooking
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+@*tí chỉnh nốt*@
+<div>
+    <h4>ServiceBooking</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Họ và Tên
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Account.FullName)
+        </dd>
+        <dt class = "col-sm-2">
+           Ngày Thuê Dịch Vụ
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BookingDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Ngày Kết Thúc Dịch Vụ
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndBookingDate)
+        </dd>
+        <dt class = "col-sm-2">
+           Tổng Tiền
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+          Số Người Thuê
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfGuards)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.Id)
+        </dd>
+        <dt class = "col-sm-2">
+           Tên Dịch Vụ
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Service.ServiceName)
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh Dịch Vụ
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/Img/ImgServicess/@Model.Service.Avata" width="70px"></img>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BookingId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

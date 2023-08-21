@@ -1,0 +1,74 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.ServiceBooking>
+
+@{
+	ViewData["Title"] = "DuyetAdmin";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">Duyệt Dịch Vụ</h1>
+
+<table class="table table-striped table-dark">
+	<thead>
+		<tr>
+			<th>
+				Họ và Tên
+			</th>
+			<th>
+				Ảnh Đại Diện
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.NumberOfGuards)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Service)
+			</th>
+			<th>Ảnh</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Order.Account.FullName)
+				</td>
+				<td>
+					<img src="~/Img/Avata/@item.Order.Account.Avata" width="50px" />
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NumberOfGuards)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Service.ServiceName)
+				</td>
+				<td>
+					<img src="~/img/ImgServicess/@item.Service.Avata" width="50px" />
+				</td>
+				<td>
+					<a asp-action="EditDuyet" asp-route-id="@item.BookingId" class="btn btn-danger">Duyệt</a> |
+					<a onclick="deletee(@item.BookingId);" class="btn btn-outline-danger" title="delete" class="btn btn-danger">Huỷ</a>|
+					<a asp-action="Details" asp-route-id="@item.BookingId" class="btn btn-danger">Details</a> |
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section Scripts {
+	<script>
+		function deletee(ID) {
+			if (confirm("Do you want to delete?")) {
+				var url = '@Url.Action("Huydichvu", "Home", new { area = "Admin" })';
+				url = url + "?id=" + ID;
+				location.href = url;
+			}
+		}
+	</script>
+}

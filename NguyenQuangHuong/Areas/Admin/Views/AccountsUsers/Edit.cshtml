@@ -1,0 +1,115 @@
+﻿@model NguyenQuangHuong.Models.AccountsUser
+
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>AccountsUser</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Id" />
+			<div class="form-group">
+				<label asp-for="FullName" class="control-label"></label>
+				<input asp-for="FullName" class="form-control" />
+				<span asp-validation-for="FullName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Phone" class="control-label"></label>
+				<input asp-for="Phone" class="form-control" />
+				<span asp-validation-for="Phone" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="PassWord" class="control-label"></label>
+				<input asp-for="PassWord" class="form-control" />
+				<span asp-validation-for="PassWord" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Birthday" class="control-label"></label>
+				<input asp-for="Birthday" class="form-control" />
+				<span asp-validation-for="Birthday" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Address" class="control-label"></label>
+				<input asp-for="Address" class="form-control" />
+				<span asp-validation-for="Address" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Email" class="control-label"></label>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<img class="main_img" src="~/Img/@Model.Avata" width="400px" />
+			<div class="btn_chon_anh">
+				<input class="form-control" type="file" name="img" hidden accept="image/*" id="avatar-input">
+				<input id="avatar-file-name" hidden class="text-muted form-control" asp-for="Avata" />
+				<button type="button" class="btn btn_profile btn_chooseimg" onclick="chooseFile()">Chọn ảnh</button>
+			</div>
+			<div class="form-group">
+				<label asp-for="Gender" class="control-label"></label>
+				<input asp-for="Gender" class="form-control" />
+				<span asp-validation-for="Gender" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CreataDate" class="control-label"></label>
+				<input asp-for="CreataDate" class="form-control" />
+				<span asp-validation-for="CreataDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+	function chinhsua() {
+		var profileName = document.querySelector('.profile_name');
+		var profilePhone = document.querySelector('.profile_phone');
+		var profileAddress = document.querySelector('.profile_address');
+		var spans = document.querySelectorAll('.profile_content');
+
+		var btnChinhsua = document.querySelector('.btn_profile_update');
+		btnChinhsua.style.display = "none";
+		var btnChinhsua = document.querySelector('.btn_profile_submit');
+		btnChinhsua.style.display = "block";
+		var btnChooseImg = document.querySelector('.btn_chooseimg');
+		btnChooseImg.style.display = 'block';
+		for (var i = 0; i < spans.length; i++) {
+			spans[i].style.display = 'none';
+			spans[i].nextElementSibling.style.display = 'block';
+		}
+	}
+	function chooseFile() {
+		document.getElementById('avatar-input').click();
+	}
+	document.getElementById('avatar-input').addEventListener('change', function () {
+		var fileInput = document.getElementById('avatar-input');
+		var fileNameInput = document.getElementById('avatar-file-name');
+		fileNameInput.value = fileInput.files[0].name;
+
+		var selectedImageFile = fileInput.files[0];
+		// Check if a file is selected
+		if (selectedImageFile) {
+			// Set the value of the fileNameInput to the selected image file name
+			fileNameInput.value = selectedImageFile.name;
+
+			// Construct the image URL with the base path and the selected file name
+			var imagePath = "/Img/" + selectedImageFile.name;
+
+			// Set the 'src' attribute of the 'img' element to the constructed image URL
+			document.querySelector('.main_img').src = imagePath;
+		}
+	});
+</script>
+
+

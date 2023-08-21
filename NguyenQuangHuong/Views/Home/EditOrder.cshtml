@@ -1,0 +1,92 @@
+﻿@model NguyenQuangHuong.Models.ServiceBooking
+
+@{
+	ViewData["Title"] = "EditOrder";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>EditOrder</h1>
+
+<h4>ServiceBooking</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="EditOrder">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="BookingId" />
+			<input type="hidden" asp-for="OrderId"/>
+			<div class="form-group">
+				<label asp-for="ServiceId" class="control-label"></label>
+				<select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+				<span asp-validation-for="ServiceId" class="text-danger"></span>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" style="margin-left:-15px" asp-for="BookingDate" class="control-label"></label>
+				<input style="margin-left:97px;width: 290px;" style="margin-left:20px" asp-for="BookingDate" class="form-control" />
+				<span asp-validation-for="BookingDate" class="text-danger"></span>
+				@ViewData["Errdate"]
+			</div>
+			<div class=" form-group row">
+				<label asp-for="EndBookingDate" class="control-label"></label>
+				<input style="margin-left:40px;width: 290px;" asp-for="EndBookingDate" class="form-control" />
+				<span asp-validation-for="EndBookingDate" class="text-danger"></span>
+				@ViewData["Errdate"]
+			</div>
+			<div class="form-group row">
+				<label asp-for="NumberOfGuards" class="control-label"></label>
+				<input style="margin-left:32px;width: 290px;" asp-for="NumberOfGuards" class="form-control" onchange="updatePrice()" />
+				<span asp-validation-for="NumberOfGuards" class="text-danger"></span>
+				<input name="numberCur" value="@Model.NumberOfGuards"/>
+				@ViewData["Err"]
+			</div>
+			<input hidden asp-for="ServiceId"/>
+			<input hidden asp-for="Confirm"/>
+			<input hidden asp-for="BookingStatus"/>
+			<input hidden asp-for="Status"/>
+			Price: <input style="margin-left: 105px;" asp-for="Price" id="Price" name="price"><span>VND</span>
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts{
+	<script>
+		function updatePrice() {
+			var numberOfGuardsInput = document.getElementById("NumberOfGuards");
+			var priceSpan = document.getElementById("Price");
+			var bookingDateInput = document.getElementById("BookingDate");
+			var endBookingDateInput = document.getElementById("EndBookingDate");
+
+			// Lấy giá trị số từ trường NumberOfGuards
+			var numberOfGuards = parseInt(numberOfGuardsInput.value);
+
+			// Lấy ngày bắt đầu thuê và ngày kết thúc thuê
+			var bookingDate = new Date(bookingDateInput.value);
+			var endBookingDate = new Date(endBookingDateInput.value);
+
+			// Tính số ngày thuê
+			var numberOfDays = Math.ceil((endBookingDate - bookingDate) / (1000 * 60 * 60 * 24));
+
+			// Giả sử giá mỗi guard là 600000 đồng/ngày
+			var pricePerGuard = 600000;
+
+			// Tính giá tiền dựa trên số ngày thuê, số lượng người bảo vệ và giá mỗi ngày
+			var price = pricePerGuard * numberOfDays * numberOfGuards;
+
+			// Nếu số ngày thuê là 2, nhân đôi giá tiền
+			//if (numberOfDays === 2) {
+			//	price *= 2;
+			//}
+
+			// Hiển thị giá trị trong trường Price
+			priceSpan.value = price;
+		}
+	</script>
+}
+

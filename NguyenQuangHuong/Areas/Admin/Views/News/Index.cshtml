@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.News>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">Danh Sách Thông Tin Thị Trường</h1>
+
+<p>
+	<a asp-action="Create" class="btn btn-danger">Thêm Thông Tin Thị Trường<</a>
+</p>
+<table class="table table-striped table-dark">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Title)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Content)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ImageUrl)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PublishedDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Status)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Employess)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Content)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ImageUrl)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PublishedDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Status)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Employess.FullName)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-danger">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-danger">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

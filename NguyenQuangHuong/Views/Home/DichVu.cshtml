@@ -1,0 +1,143 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Business>
+
+@{
+	ViewData["Title"] = "DichVu";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="background-image: url(https://starsecurity.ae/wp-content/uploads/2023/03/who-we-are-ban.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;height: 370px;">
+	<br />
+	<h2 style="color:white;text-transform: uppercase;font-size:40px;font-weight: bold;text-indent: 20px;text-indent: 115px;
+    margin-top: 105px;">
+		Dịch Vụ Bảo Vệ
+	</h2>
+	<br />
+	<div style="text-indent: 115px;">
+		<a asp-action="Index" style="color:#eb8111;font-size:17px;text-transform: uppercase;font-weight: bold">Trang Chủ</a> <span style="color:white;font-size:17px;text-transform: uppercase;font-weight: bold">></span><span style="color:#eb8111;font-size:17px;text-transform: uppercase;font-weight: bold">Dịch Vụ</span>
+	</div>
+</div>
+
+<div>
+	<h3 style="text-align:center;margin-top:30px">Dịch Vụ Bảo Vệ - Uy Tín Tạo Niềm Tin</h3>
+	<div style="box-sizing: border-box;display:flex;justify-content: center;align-items: center;">
+		<div class="left-content">
+			<img src="~/img/ImgServicess/hinh-anh-bao-ve-nuoc-ngoai-dep-12.jpg" style=" width: 100%; height: 550px" />
+			<h1>1- Các dịnh vụ của chúng tôi.</h1>
+			<p>
+				- Công ty STAR SECURITY SERVICES
+				dịch vụ bảo vệ Việt Tín là một trong những đơn vị dịch vụ bảo vệ hàng đầu tại Việt Nam, với trên 10 năm kinh nghiệm trong lĩnh vực này. Công ty cung cấp các dịch vụ bảo vệ chuyên nghiệp cho các khách hàng đa dạng, bao gồm bệnh viện, nhà máy, xí nghiệp, công trường, siêu thị, trung tâm thương mại, và nhiều mục tiêu khác.
+			</p>
+			<a asp-action="Index" asp-controller="Home" class="btn btn-outline-danger">Xem Chi Tiết</a>
+			<section class="security_section layout_padding">
+				@foreach (var item in Model)
+				{
+					if (item.Id == 1)
+					{
+						<h3>
+							@item.BusinesName
+						</h3>
+						<h2>
+							@item.BusinesName Chúng Tôi
+						</h2>
+						<div class="security_container">
+							<div class="carousel-wrap">
+								<div class="owl-carousel">
+									@foreach (var item1 in item.Servicesses)
+									{
+										if (item.Id == 1)
+										{
+											<div class="item">
+												<div class="security_img-box i-box-1" style="background-image: url(../Img/ImgServicess/@item1.Avata);">
+													<a asp-action="Chitiet" asp-controller="Home" asp-route-id="@item1.ServiceId">Xem Chi Tiết</a>
+												</div>
+											</div>
+										}
+									}
+								</div>
+							</div>
+							<p style="margin-top:20px">@item.Description</p>
+						</div>
+					}
+				}
+				<div class="security_btn">
+					<a href="">
+						<span>
+							Đọc Thêm
+						</span>
+						<img src="~/Img/imguser/arrow-black.png" alt="" class="ml-2" />
+					</a>
+				</div>
+			</section>
+			<section class="security_section layout_padding">
+				@foreach (var item in Model)
+				{
+					if (item.Id == 3)
+					{
+						<h3>
+							@item.BusinesName
+						</h3>
+						<h2>
+							@item.BusinesName Chúng Tôi
+						</h2>
+						<div class="security_container">
+							<div class="carousel-wrap">
+								<div class="owl-carousel">
+									@foreach (var item1 in item.Servicesses)
+									{
+										if (item.Id == 3)
+										{
+											<div class="item">
+												<div class="security_img-box i-box-1" style="background-image: url(../Img/ImgServicess/@item1.Avata);">
+													<a asp-action="Chitiet" asp-controller="Home" asp-route-id="@item1.ServiceId">Xem Chi Tiết</a>
+												</div>
+											</div>
+										}
+									}
+								</div>
+							</div>
+							<p style="margin-top:20px">@item.Description</p>
+						</div>
+					}
+				}
+				<div class="security_btn">
+					<a href="">
+						<span>
+							Đọc Thêm
+						</span>
+						<img src="~/Img/imguser/arrow-black.png" alt="" class="ml-2" />
+					</a>
+				</div>
+			</section>
+		</div>
+
+		<div class="right-content">
+			<h4 style="text-align:center">Liên Quan</h4>
+			@foreach (var item in Model)
+			{
+				@foreach (var item1 in item.Servicesses)
+				{
+					<div class="huong">
+						<a asp-action="Chitiet" asp-controller="Home" asp-route-id="@item1.ServiceId">
+							<img src="~/Img/ImgServicess/@item1.Avata" class="thumb" />
+						</a>
+						<div class="readmore">
+							<div class="text">
+								<a asp-action="Chitiet" asp-controller="Home" asp-route-id="@item1.ServiceId">
+									Chi tiết
+								</a>
+							</div>
+						</div>
+					</div>
+				}
+			}
+
+		</div>
+	</div>
+</div>
+
+
+

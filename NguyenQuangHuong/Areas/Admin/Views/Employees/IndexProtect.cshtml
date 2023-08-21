@@ -1,0 +1,72 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Employee>
+
+@{
+	ViewData["Title"] = "IndexProtect";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align: center;">Nhân viên bảo vệ</h1>
+
+<p>
+	<a asp-action="CreateProtect" class="btn btn-danger">Thêm Nhân Viên Mới</a>
+</p>
+<table class="table table-striped table-dark">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.FullName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Gender)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Birthday)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Avata)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.FullName)
+				</td>
+				<td>
+					@if (item.Gender == true)
+					{
+						<span>Nam</span>
+					}
+					else
+					{
+						<span>Nữ</span>
+					}
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Birthday)
+				</td>
+				<td>
+					<img src="~/Img/Avata/@item.Avata" width="50px" />
+				</td>
+				<td>
+					<a onclick="deletee(@item.UserId);" class="btn btn-outline-danger" title="delete">Xoá</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section Scripts {
+	<script>
+		function deletee(ID) {
+			if (confirm("Do you want to delete?")) {
+				var url = '@Url.Action("Delete", "Employees", new { area = "Admin" })';
+				url = url + "?id=" + ID;
+				location.href = url;
+			}
+		}
+	</script>
+}

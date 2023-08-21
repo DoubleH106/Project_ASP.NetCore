@@ -1,0 +1,199 @@
+﻿/* CSS cho trang web */
+
+nav {
+    padding: 10px;
+    text-align: center;
+}
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        nav ul li {
+            display: inline-block;
+            position: relative;
+        }
+
+            nav ul li a {
+                display: block;
+                padding: 10px 20px;
+                color: #333;
+                text-decoration: none;
+            }
+
+            nav ul li:hover > ul {
+                display: block;
+            }
+
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+        }
+
+            nav ul ul li {
+                width: 200px;
+                float: none;
+                display: list-item;
+                position: relative;
+            }
+
+                nav ul ul li a {
+                    padding: 10px 20px;
+                    color: #333;
+                    text-decoration: none;
+                }
+
+                    nav ul ul li a:hover {
+                        background-color: #ddd;
+                    }
+
+section {
+    padding: 20px;
+    margin: 20px;
+}
+
+    section h3 {
+        margin-top: 20px;
+    }
+
+    section ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+        width: 90%;
+    }
+
+        section ul li {
+            margin-bottom: 15px;
+        }
+
+            section ul li h4 {
+                margin: 0;
+                font-size: 18px;
+                color: white;
+            }
+
+            section ul li p {
+                margin: 5px 0 0;
+                color: #777;
+            }
+
+        section ul.sub-services {
+            padding-left: 20px;
+        }
+
+            section ul.sub-services li {
+                margin-bottom: 10px;
+            }
+/* CSS cho phần tử ul */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* CSS cho phần tử li */
+.li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #EB8111;
+    border: 1px solid #ccc;
+}
+
+.li1 {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: black;
+    border: 1px solid #ccc;
+}
+
+/* CSS cho liên kết trong phần tử li */
+li a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* CSS khi di chuột qua phần tử li */
+.li_hover:hover {
+    background-color: black;
+}
+
+.services-heading {
+    position: relative;
+}
+
+    .services-heading h1 {
+        position: relative;
+        z-index: 2;
+    }
+
+.services-divider {
+    position: absolute;
+    top: 50%;
+    left: 160px;
+    right: 70%;
+    margin-top: 0;
+    border: none;
+    border-top: 2px solid #333;
+    z-index: 1;
+}
+
+.services-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: justify;
+}
+
+.services-section {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 20px;
+}
+
+.services-heading h1 {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.services-heading::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    left: 67%;
+    transform: translateX(-50%);
+    width: 45%;
+    height: 1.5px;
+    background-color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin: 0;
+}
+
+p {
+    margin-top: 5px;
+}
+
+.image-container {
+    text-align: center;
+}
+
+    .image-container img {
+        max-width: 100%;
+        height: auto;
+    }

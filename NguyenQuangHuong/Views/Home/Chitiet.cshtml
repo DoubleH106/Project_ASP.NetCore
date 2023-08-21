@@ -1,0 +1,135 @@
+﻿@model NguyenQuangHuong.Models.Servicess
+
+@{
+	ViewData["Title"] = "Chitiet";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+	.testimonial-container {
+		display: flex;
+		align-items: center;
+		margin-left: 195px;
+		margin-bottom: 20px;
+	}
+
+	.testimonial-image {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		object-fit: cover;
+		margin-right: 10px;
+	}
+
+	.testimonial-info {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.testimonial-name {
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.testimonial-text {
+		font-size: 14px;
+		color: #666;
+	}
+</style>
+<div style="background-image: url(https://starsecurity.ae/wp-content/uploads/2023/03/who-we-are-ban.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;height: 370px;">
+	<br />
+	<h2 style="color:white;text-transform: uppercase;font-size:40px;font-weight: bold;text-indent: 20px;text-indent: 115px;
+    margin-top: 105px;">
+		Dịch Vụ Bảo Vệ
+	</h2>
+	<br />
+	<div style="text-indent: 115px;">
+		<a asp-action="Index" style="color:#eb8111;font-size:17px;text-transform: uppercase;font-weight: bold">Trang Chủ</a> <span style="color:white;font-size:17px;text-transform: uppercase;font-weight: bold">></span><span style="color:#eb8111;font-size:17px;text-transform: uppercase;font-weight: bold">Dịch Vụ</span>
+	</div>
+</div>
+<div style=" padding-left: 200px;">
+	<div class="right-div">
+		<div style="overflow: hidden; text-overflow: ellipsis;">
+			<div style="box-sizing: border-box;display:flex;justify-content: center;align-items: center;">
+				<div class="left-content">
+					<img src="~/img/ImgServicess/@Model.Avata" style=" width: 100%; height: 550px;margin-top: 25px;" />
+					<h3 style="text-align:center">@Model.ServiceName</h3>
+					<h4>Giá Dịch Vụ: @Model.ServicePrice VND</h4>
+					<h4>@Model.ServiceName gồm có @Model.Numberofprople thành viên.</h4>
+					<h5 style="line-height:30px">
+						@Model.Description
+					</h5>
+					@if (Model.BusinesId == 1)
+					{
+						<a asp-action="Datngay" asp-controller="Home" asp-route-id="@Model.ServiceId" class="btn btn-outline-danger">Đặt Dịch Vụ</a>
+					}
+					else
+					{
+						<a onclick="showForm()" class="btn btn-outline-danger">Đặt Dịch Vụ</a>
+						<div id="b1" style="display:none">
+							<form style="justify-content: center;" method="post" asp-controller="Home" asp-action="Datngay1">
+								<div class="Container" style="width: 50%; border: 1px solid; padding: 40px; color: #ffffff; background: #2a2a2a; border-radius: 10px;">
+									<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+									<input type="hidden" value="@Model.ServiceId" name="idServicess" />
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label" style="margin-left:-15px" for="servicebooking" class="control-label"></label>
+										<input type="datetime-local" id="servicebooking" name="servicebooking" class="form-control" />
+										<span class="text-danger">@ViewData["Errdate"]</span>
+									</div>
+									<input style="margin-left: 150px;" class="btn btn-primary" type="submit" value="Finish" />
+								</div>
+							</form>
+						</div>
+					}
+					<div>
+						<h5><b>Thông Tin Liên Hệ</b></h5>
+						<h4>
+							STAR SECURITY SERVICES
+						</h4>
+						<p>Địa chỉ: 285 Đội Cấn - Ba Đình - Hà Nội.</p>
+						<p>Số Điện Thoại:0988888888</p>
+						<p>Email: info@STARSECURITYSERVICES.com.vn</p>
+						<p>Website: baoveviettin.com</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		@foreach (var item1 in Model.Testimonials)
+		{
+			<div class="testimonial-container">
+				<img src="~/Img/Avata/@item1.AccountsUser.Avata" class="testimonial-image" alt="Ảnh của bạn">
+				<div class="testimonial-info">
+					<div class="testimonial-name">@item1.AccountsUser.FullName</div>
+					<div class="testimonial-text">@item1.TestimonialText</div>
+				</div>
+			</div>
+		}
+	</div>
+	<div style="margin-left: 195px;">
+		<form method="post" asp-action="BinhLuan" asp-controller="Home">
+			<h3>Bình luận của bạn</h3>
+			<textarea name="bl" style="width: 80%;" rows="4" cols="50" placeholder="Nhập bình luận của bạn"></textarea>
+			<br>
+			<input hidden name="ServiceID" value="@Model.ServiceId" />
+			<input type="submit" value="Bình Luận" class="btn btn-primary" />
+		</form>
+	</div>
+</div>
+
+<script>
+	function showForm() {
+		var form = document.getElementById("b1");
+		form.style.display = "block";
+	}
+				//var errDate = '@ViewData/*["Errdate"]*/'; // Lấy thông báo lỗi từ ViewData
+				//if (errDate !== "") {
+				//	alert(errDate); // Hiển thị thông báo lỗi nếu có
+				//}
+</script>
+
+

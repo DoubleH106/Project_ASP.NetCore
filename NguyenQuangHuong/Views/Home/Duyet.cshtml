@@ -1,0 +1,64 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.ServiceBooking>
+
+@{
+	ViewData["Title"] = "Duyet";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Đã Thuê Dịch Vụ</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Đặt Ngay
+			</th>
+			<th>
+				Ngày Hết Dịch Vụ
+			</th>
+			<th>
+				Tổng Tiền
+			</th>
+			<th>
+				Số Lượng Người
+			</th>
+			<th>
+				Dịch Vụ
+			</th>
+			<th>Ảnh</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			@if (item != null)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.BookingDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.EndBookingDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Price)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.NumberOfGuards)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Service.ServiceName)
+					</td>
+					<td>
+						<img src="~/img/ImgServicess/@item.Service.Avata" width="50px" />
+					</td>
+				</tr>
+			}
+			else
+			{
+				<h3>Bạn chưa có dịch vụ nào được duyệt xin vui lòng chờ.</h3>
+			}
+
+		}
+	</tbody>
+</table>
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Branch>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">Chi Nhánh</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-danger">Thêm Chi Nhánh</a>
+</p>
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Region)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region.RegionName)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.BranchId" class="btn btn-danger">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BranchId" class="btn btn-danger">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BranchId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

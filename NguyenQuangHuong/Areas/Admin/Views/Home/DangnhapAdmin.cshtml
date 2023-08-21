@@ -1,0 +1,58 @@
+﻿@model NguyenQuangHuong.Models.Employee
+
+@{
+	ViewData["Title"] = "DangnhapAdmin";
+	Layout = null;
+	<link href="~/css/admin.css" rel="stylesheet" />
+}
+
+<section class="backgroundH" style=" display: flex; justify-content: center; align-items: center;min-height: 100vh; width: 100%; background-position: center;  background-size: cover;">
+	<div class="form-box">
+		<div class="form-value">
+			<form asp-action="DangnhapAdmin" asp-controller="Home" asp-area="Admin" method="post">
+				<h2>Login</h2>
+				<div class="inputbox">
+					<ion-icon name="mail-outline"></ion-icon>
+					<input class="huong" asp-for="Phone" name="phone" class="form-control" required placeholder="Phone" />
+					<span asp-validation-for="Phone" class="text-danger"></span>
+				</div>
+				<div class="inputbox">
+					<ion-icon name="lock-closed-outline"></ion-icon>
+					<input class="huong" asp-for="Password" name="pass" id="passwordInput" class="form-control" required placeholder="PassWord" type="password" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+					@if (TempData["ErrorMessage"] != null)
+					{
+						<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+					}
+				</div>
+				<div style="margin-left: 50px;">
+					<input style="margin-left:20px;" type="checkbox" id="showHideCheckbox">
+					<label for="showHideCheckbox" style="color:white"> Show Password</label>
+				</div>
+				<button>Log in</button>
+				<div class="register">
+					<p>Don't have a account <a href="register.html">Register</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const passwordInput = document.getElementById("passwordInput");
+		const showHideCheckbox = document.getElementById("showHideCheckbox");
+
+		showHideCheckbox.addEventListener("click", function () {
+			if (showHideCheckbox.checked) {
+				passwordInput.type = "text";
+			} else {
+				passwordInput.type = "password";
+			}
+		});
+	});
+</script>
+
+

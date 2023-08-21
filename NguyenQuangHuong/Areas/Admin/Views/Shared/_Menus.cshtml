@@ -1,0 +1,271 @@
+﻿<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+	<!-- Add icons to the links using the .nav-icon class
+		 with font-awesome or any other icon font library -->
+	@{
+		@using System.Security.Claims;
+		var nameClaim = User.FindFirstValue("permission");
+	}
+	@if (nameClaim == "1")
+	{
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-copy"></i>
+				<p>
+					Quản Lý Nhân Viên
+					<i class="fas fa-angle-left right"></i>
+					<span class="badge badge-info right">6</span>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a asp-action="Index" asp-controller="Employees" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Hr</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="IndexProtect" asp-controller="Employees" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Bảo Vệ</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="IndexATM" asp-controller="Employees" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>ATM</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="listEmployeesdelete" asp-controller="Employees" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Nhân viên đã nghỉ việc</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Doanh Số</p>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-chart-pie"></i>
+				<p>
+					Hoạt Động Kinh Doanh
+					<i class="right fas fa-angle-left"></i>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Servicesses" asp-action="Baove" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Bảo Vệ</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Servicesses" asp-action="dichvutien" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Dịch Vụ Tiền</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Servicesses" style="width: 120%" asp-action="cammera" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Hệ Thống An Ninh Điện Tử</p>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-tree"></i>
+				<p>
+					Quản Lý Khách Hàng
+					<i class="fas fa-angle-left right"></i>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a asp-area="Admin" asp-action="Index" asp-controller="AccountsUsers" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Khách Hàng</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="Index" asp-controller="AccountsUsers" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Tài Khoản</p>
+					</a>
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-edit"></i>
+				<p>
+					Quản Lý Mạng Lưới
+					<i class="fas fa-angle-left right"></i>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a asp-action="index" asp-controller="Regions" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Miền</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-action="index" asp-controller="Branches" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Chi Nhánh</p>
+					</a>
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-table"></i>
+				<p>
+					Quản Lý Hệ Thống
+					<i class="fas fa-angle-left right"></i>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a href="pages/tables/simple.html" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Danh Mục</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-action="index" asp-controller="ServiceBookings" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Bookings</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-action="index" asp-controller="Orders" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Order</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-action="Index" asp-controller="Testimonials" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Bình Luận</p>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-table"></i>
+				<p>
+					Quản Lý Pages
+					<i class="fas fa-angle-left right"></i>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a asp-area="Admin" asp-action="index" asp-controller="Servicesses" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Dịch Vụ</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="News" asp-action="Index" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Blog</p>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-table"></i>
+				<p>
+					Quản Lý Chung
+					<i class="fas fa-angle-left right"></i>
+				</p>
+			</a>
+			<ul class="nav nav-treeview">
+				<li class="nav-item">
+					<a asp-area="Admin" asp-action="index" asp-controller="Businesses" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Kinh Doanh</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Roles" asp-action="index" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Vai Trò</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Departments" asp-action="index" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Phòng</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Recruitments" asp-action="index" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Tuyển Dụng</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a asp-area="Admin" asp-controller="Home" asp-action="DuyetAdmin" class="nav-link">
+						<i class="far fa-circle nav-icon"></i>
+						<p>Duyệt Dịch Vụ</p>
+					</a>
+				</li>
+			</ul>
+		</li>
+	}
+	else if (nameClaim == "2")
+	{
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="nav-icon fas fa-table"></i>
+				<p>
+					Quản Lý Chung
+					<i class="fas fa-angle-left right"></i>
+				</p>
+			</a>
+		<li class="nav-item">
+			<a asp-area="Admin" asp-action="index" asp-controller="Businesses" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Kinh Doanh</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a asp-area="Admin" asp-controller="Roles" asp-action="index" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Vai Trò</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a asp-area="Admin" asp-controller="Departments" asp-action="index" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Phòng</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a asp-area="Admin" asp-controller="Recruitments" asp-action="index" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Tuyển Dụng</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a asp-area="Admin" asp-controller="Home" asp-action="DuyetAdmin" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Duyệt Dịch Vụ</p>
+			</a>
+		</li>
+		</li>
+	}
+	else
+	{
+		<h1>Bạn không được phép chuy cập</h1>
+	}
+</ul>

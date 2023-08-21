@@ -1,0 +1,69 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Employee>
+
+@{
+	ViewData["Title"] = "listEmployeesdelete";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">Danh Sách Nhân Viên Đã Nghỉ Việc</h1>
+
+<table class="table table-striped table-dark">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.FullName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Gender)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Birthday)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Avata)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.FullName)
+				</td>
+				<td>
+					@if (item.Gender == true)
+					{
+						<span>Nam</span>
+					}
+					else
+					{
+						<span>Nữ</span>
+					}
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Birthday)
+				</td>
+				<td>
+					<img src="~/Img/Avata/@item.Avata" width="50px" />
+				</td>
+				<td>
+					<a onclick="deletee(@item.UserId);" class="btn btn-outline-danger" title="delete"><i class="fa-solid fa-trash">Thêm</i></a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section Scripts {
+	<script>
+		function deletee(ID) {
+			if (confirm("Do you want to Create?")) {
+				var url = '@Url.Action("EditProtect", "Employees", new { area = "Admin" })';
+				url = url + "?id=" + ID;
+				location.href = url;
+			}
+		}
+	</script>
+}

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Recruitment>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">Danh Sách Những Người Gửi CV</h1>
+
+<p>
+	<a asp-action="Create" class="btn btn-danger">Thêm Nhân Viên Mới</a>
+</p>
+<table class="table table-striped table-dark">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.EmployeeName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Birthday)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.EmployeeAddress)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Phone)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Avata)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Email)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Gender)
+			</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.EmployeeName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Birthday)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EmployeeAddress)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Phone)
+				</td>
+				<td>
+					<img src="~/Img/Avata/@item.Avata" width="50" />
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+				<td>
+					@if (item.Gender == true)
+					{
+						<h5>Nam</h5>
+					}
+					else{
+						<h5>Nữ</h5>
+					}
+				</td>
+				<td>
+					@*<a asp-action="Edit" asp-route-id="@item.RecruitmentId">Edit</a> |*@
+					<a asp-action="Details" asp-route-id="@item.RecruitmentId" class="btn btn-danger">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.RecruitmentId" class="btn btn-danger">Delete</a>
+				</td>
+				<td>
+					<a asp-action="Admit" asp-controller="Recruitments" asp-route-id="@item.RecruitmentId">Chấp Nhận</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

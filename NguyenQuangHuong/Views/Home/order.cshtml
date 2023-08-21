@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.ServiceBooking>
+
+@{
+	ViewData["Title"] = "order";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chờ Admin Phê Duyệt</h1>
+<a asp-action="Duyet">Danh Sách Đã Phê Duyệt.</a>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Đặt Ngay
+			</th>
+			<th>
+				Ngày Hết Dịch Vụ
+			</th>
+			<th>
+				Tổng Tiền
+			</th>
+			<th>
+				Số Lượng Người
+			</th>
+			<th>
+				Dịch Vụ
+			</th>
+			<th>Ảnh</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.BookingDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EndBookingDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NumberOfGuards)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Service.ServiceName)
+				</td>
+				<td>
+					<img src="~/img/ImgServicess/@item.Service.Avata" width="50px" />
+				</td>
+				<td>
+					<a asp-action="EditOrder" asp-route-id="@item.BookingId">Edit</a> |
+					@*<a asp-action="Details" asp-route-id="@item.BookingId">Details</a> |*@
+					<a onclick="deletee(@item.BookingId);" class="btn btn-outline-danger" title="delete">Xoá</a>
+				</td>
+			</tr>
+			@if (item.Status == true)
+			{
+				@ViewData["Err"]
+			}
+		}
+	</tbody>
+</table>
+@section Scripts {
+	<script>
+		function deletee(ID) {
+			if (confirm("Do you want to delete?")) {
+				var url = '@Url.Action("DeleteConfirmed", "Home", new { area = "" })';
+				url = url + "?id=" + ID;
+				location.href = url;
+			}
+		}
+	</script>
+}

@@ -1,0 +1,104 @@
+﻿
+.left-content {
+    width: 70%;
+}
+
+.right-content {
+    margin-left: 10px;
+    width: 20%;
+    margin-top: -525px;
+}
+
+.huong {
+    position: relative;
+    width: 90%;
+    /* display: flex; */
+    /* justify-content: center; */
+   /* margin-left: 75px;*/
+}
+
+.thumb {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .6s ease;
+    backface-visibility: hidden;
+}
+
+.readmore {
+    transition: .6s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.huong:hover .thumb {
+    opacity: 0.5;
+}
+
+.huong:hover .readmore {
+    opacity: 1;
+}
+
+.text {
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    padding: 16px 32px;
+    font-weight: bold;
+}
+
+
+#userList {
+    background-color: black;
+    position: absolute;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    top: 45px;
+    right: -75px;
+    width: 135px;
+}
+
+    #userList ul li {
+        padding-left: 30px;
+        padding-right: 24px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top: 1px solid gray;
+    }
+
+    #userList ul:hover {
+        all: unset;
+    }
+
+    #userList ul li:hover {
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    #userList ul a {
+        all: unset;
+    }
+
+    #userList ul li a:hover {
+        color: #8d99af !important;
+    }
+
+.li_no_hover {
+    padding: 0 !important;
+    border-radius: 20px;
+}
+
+    .li_no_hover:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+   /* ul li{
+        all:unset
+    }*/

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.News>
+
+@{
+	ViewData["Title"] = "News";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@foreach (var item in Model)
+{
+	<div class="page-container">
+		<div class="author-info">
+			<img src="~/img/avata/@item.Employess.Avata" alt="Ảnh người đăng" class="author-image">
+			<div class="author-details">
+				<p class="author-name">@item.Employess.FullName</p>
+				<p class="post-date">@item.PublishedDate</p>
+			</div>
+		</div>
+		<h1 class="page-title">@item.Title</h1>
+		<div class="page-content">
+			<div style="white-space:pre-line">@item.Content</div>
+		</div>
+		<img src="~/img/@item.ImageUrl" alt="Hình ảnh" class="page-image">
+	</div>
+}

@@ -1,0 +1,61 @@
+﻿@model NguyenQuangHuong.Models.AccountsUser
+
+@{
+	ViewData["Title"] = "DangNhap";
+	Layout = null;
+	<link href="~/css/login.css" rel="stylesheet" />
+}
+<section style="background: url('../img/imguser/background9.jpg') no-repeat; display: flex; justify-content: center; align-items: center;min-height: 100vh; width: 100%; background-position: center;  background-size: cover;">
+	<div class="form-box">
+		<div class="form-value">
+			<form asp-action="DangKy" asp-controller="Home" method="post">
+				<h2>Register</h2>
+				<div class="inputbox">
+					<ion-icon name="mail-outline"></ion-icon>
+					<input class="huong" asp-for="FullName" name="FullName" class="form-control" required placeholder="FullName" />
+					<span asp-validation-for="FullName" class="text-danger"></span>
+				</div>
+				<div class="inputbox">
+					<ion-icon name="mail-outline"></ion-icon>
+					<input class="huong" asp-for="Phone" name="phone" class="form-control" required placeholder="Phone" />
+					<span asp-validation-for="Phone" class="text-danger"></span>
+				</div>
+				<div class="inputbox">
+					<ion-icon name="mail-outline"></ion-icon>
+					<input class="huong" asp-for="Email" name="email" class="form-control" required placeholder="Email" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+				<div class="inputbox">
+					<ion-icon name="lock-closed-outline"></ion-icon>
+					<input class="huong" asp-for="PassWord" name="pass" id="passwordInput" class="form-control" required placeholder="PassWord" type="password" />
+					<span asp-validation-for="PassWord" class="text-danger"></span>
+				</div>
+				<div style="margin-left: 50px;">
+					<input style="margin-left:20px;" type="checkbox" id="showHideCheckbox">
+					<label for="showHideCheckbox" style="color:white"> Show Password</label>
+				</div>
+				<button>Register</button>
+				<div class="register">
+					<p>Don't have a account <a asp-action="DangNhap" asp-controller="Home">Login</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const passwordInput = document.getElementById("passwordInput");
+		const showHideCheckbox = document.getElementById("showHideCheckbox");
+
+		showHideCheckbox.addEventListener("click", function () {
+			if (showHideCheckbox.checked) {
+				passwordInput.type = "text";
+			} else {
+				passwordInput.type = "password";
+			}
+		});
+	});
+</script>

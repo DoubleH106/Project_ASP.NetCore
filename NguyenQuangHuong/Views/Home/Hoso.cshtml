@@ -1,0 +1,143 @@
+﻿@model NguyenQuangHuong.Models.AccountsUser
+
+@{
+	ViewData["Title"] = "Hoso";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="profile-container">
+	<h1 style="text-align: center;">Thông Tin Cá Nhân</h1>
+	<div class="profile-user-info">
+		<form asp-action="Hoso" asp-controller="Home" asp-area="" method="post">
+			<div class="divc">
+				<div class="btn_chon_anh">
+					<img class="main_img" src="~/Img/Avata/@Model.Avata" />
+					<input class="form-control" hidden type="file" name="img" accept="image/*" id="avatar-input">
+					<input id="avatar-file-name" hidden class="text-muted form-control" asp-for="Avata" />
+					<button type="button" style="margin-left: 60px;display:none;margin-top: 25px;width:100px;height:50px" class="btn btn_profile btn_chooseimg btn-danger" onclick="chooseFile()">Chọn ảnh</button>
+				</div>
+				<input hidden asp-for="Avata" />
+				<div class="profile-user-details">
+					<div class="divc">
+						<strong>Họ và Tên:</strong><div class="profile_item" id="fullNameDiv">@Model.FullName</div>
+						<div class="profile_content" style="display:none">
+							<input asp-for="FullName" />
+						</div>
+					</div>
+					<div class="divc">
+						<strong>Giới Tính:</strong><div class="profile_item" id="genderDiv">
+							@if (Model.Gender.Equals("true"))
+							{
+								<span>Nam</span>
+							}
+							else
+							{
+								<span>Nữ</span>
+							}
+						</div>
+						<div class="profile_content" style="display:none">
+							<input type="radio" asp-for="Gender" name="gender" value="true" checked />
+							<label class="radio-label">Nam</label>
+							<input type="radio" asp-for="Gender" name="gender" value="false" />
+							<label class="radio-label">Nữ</label>
+						</div>
+					</div>
+					<div class="divc">
+						<strong>Số Điện Thoại:</strong><div class="profile_item">@Model.Phone</div><div class="profile_content" style="display:none">
+							<input asp-for="Phone" />
+						</div>
+					</div>
+					<div class="divc">
+						<strong>Email:</strong><div class="profile_item">@Model.Email</div><div class="profile_content" style="display:none">
+							<input asp-for="Email" />
+						</div>
+					</div>
+					<div class="divc">
+						<strong>Ngày Sinh:</strong><div class="profile_item">@Model.Birthday</div><div class="profile_content" style="display:none">
+							<input asp-for="Birthday" style="width: 190px;" />
+						</div>
+					</div>
+					<div class="divc">
+						<strong>Địa Chỉ:</strong><div class="profile_item">@Model.Address</div><div class="profile_content" style="display:none">
+							<input asp-for="Address" />
+						</div>
+					</div>
+					@*<div class="divc">
+					<strong>PassWord:</strong><div class="profile_item">@Model.PassWord</div><div class="profile_content" style="display:none">
+					<input hidden asp-for="PassWord" />
+					</div>
+					</div>*@
+					<input hidden asp-for="PassWord" />
+				</div>
+				<input asp-for="Id" hidden value="@Model.Id" />
+				<div class="profile-user-actions">
+					<input class="profile-btn-edit" style="width: 100px;height: 50px;margin-top: 210px;margin-left: -455px;" type="button" onclick="editProfile()" value="Sửa" />
+					<button style="width: 100px;height: 50px;margin-top: 280px;margin-left: -277px;" class="profile-btn-save btn btn-danger" type="submit" hidden>
+						Lưu
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+@*<div class="cart-container">
+	<h2 style="text-align:center;background:#00FFFF">Giỏ Hàng</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Sản phẩm</th>
+				<th>Giá</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Dép Tổ Ong</td>
+				<td>999.999.999 VNĐ</td>
+				<td><button class="btn-delete">Xóa</button></td>
+			</tr>
+			<tr>
+				<td>Tông Lào</td>
+				<td>999.999.999 VNĐ</td>
+				<td><button class="btn-delete">Xóa</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button class="btn-checkout">Thanh Toán</button>
+</div>*@
+<script>
+	function editProfile() {
+		// Ẩn div có class "profile_item" và hiển thị div có class "profile_content"
+		document.querySelectorAll('.profile_item').forEach(item => item.style.display = 'none');
+		document.querySelectorAll('.profile_content').forEach(item => item.style.display = 'block');
+		document.querySelectorAll('.btn_chooseimg').forEach(item => item.style.display = 'block');
+
+		// Ẩn nút "Sửa Thông Tin" và hiển thị nút "Lưu Thay Đổi"
+		document.querySelector('.profile-btn-edit').style.display = 'none';
+		document.querySelector('.profile-btn-save').removeAttribute('hidden');
+	}
+
+	//Thêm ảnh
+	function chooseFile() {
+		document.getElementById('avatar-input').click();
+	}
+	document.getElementById('avatar-input').addEventListener('change', function () {
+		var fileInput = document.getElementById('avatar-input');
+		var fileNameInput = document.getElementById('avatar-file-name');
+		fileNameInput.value = fileInput.files[0].name;
+
+		var selectedImageFile = fileInput.files[0];
+		// Check if a file is selected
+		if (selectedImageFile) {
+			// Set the value of the fileNameInput to the selected image file name
+			fileNameInput.value = selectedImageFile.name;
+
+			// Construct the image URL with the base path and the selected file name
+			var imagePath = "/img/Avata/" + selectedImageFile.name;
+
+			// Set the 'src' attribute of the 'img' element to the constructed image URL
+			document.querySelector('.main_img').src = imagePath;
+		}
+	});
+</script>

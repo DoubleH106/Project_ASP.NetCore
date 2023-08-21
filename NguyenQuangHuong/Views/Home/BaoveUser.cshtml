@@ -1,0 +1,85 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Servicess>
+
+@{
+	ViewData["Title"] = "Baove";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	<link href="~/css/baove.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
+	<link href="~/css/style.css" rel="stylesheet" />
+}
+
+<div style="background-image: url(https://starsecurity.ae/wp-content/uploads/2023/03/who-we-are-ban.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;height: 370px;">
+	<br>
+	<h2 style="color:white;text-transform: uppercase;font-size:40px;font-weight: bold;text-indent: 20px;text-indent: 115px;
+    margin-top: 105px;">
+		Dịch Vụ Của Chúng Tôi
+	</h2>
+	<br>
+	<div style="text-indent: 115px;">
+		<a style="color:#eb8111;font-size:17px;text-transform: uppercase;font-weight: bold" href="/">Trang Chủ</a> <span style="color:white;font-size:17px;text-transform: uppercase;font-weight: bold">&gt;</span><span style="color:#eb8111;font-size:17px;text-transform: uppercase;font-weight: bold">Dịch Vụ Của Chúng Tôi</span>
+	</div>
+
+</div>
+
+<section class="services-section">
+	<div>
+		<div class="services-heading">
+			<h1>Our Services</h1>
+		</div>
+
+		<ul>
+			@foreach (var item in Model)
+			{
+				<a asp-action="BaoveUser" asp-controller="Home" asp-route-serviceID="@item.ServiceId">
+				<li class="li li_hover">
+					<h4>@item.ServiceName</h4>
+					<p>Có số thành viên: @item.Numberofprople</p>
+				</li>
+				</a>
+			}
+		</ul>
+	</div>
+
+	@if (ViewBag.huong == null)
+	{
+		<div class="additional-content" style="margin-top:35px">
+			<div class="image-container">
+				<img src="~/Img/ImgServicess/industry.png" alt="" style="margin-right: 160px;width: 800px;">
+			</div>
+			<h1 style="margin-top: 30px;">Dịch vụ toàn diện cho cơ sở khách hàng đa dạng</h1>
+			<hr>
+			<p>
+				Với nhiều thập kỷ kinh nghiệm và chuyên môn của mình, chúng tôi cung cấp
+				các dịch vụ bảo mật toàn diện cho một cơ sở khách hàng lớn và đa dạng ở UAE.
+				Khách hàng của chúng tôi bao gồm các chính phủ, tập đoàn đa quốc gia,
+				doanh nghiệp vừa và nhỏ, ngành khách sạn, Dầu khí, Kỹ thuật & Xây dựng,
+				viện giáo dục và Trung tâm thương mại. Đội ngũ chuyên gia bảo mật đa ngành,
+				có kinh nghiệm và được chứng nhận đặc biệt của chúng tôi có hiểu biết sâu sắc về
+				những thách thức và rủi ro mà khách hàng của chúng tôi trong khu vực phải đối mặt.
+				Chúng tôi cam kết hợp tác với khách hàng để phát triển và cung cấp các giải pháp
+				bảo mật hiệu quả phù hợp với nhu cầu cụ thể của họ. Với các dịch vụ an ninh toàn diện của mình,
+				chúng tôi cố gắng đảm bảo an toàn và an ninh cho cơ sở và nhân viên của khách hàng.
+			</p>
+		</div>
+	}
+	else
+	{
+		@foreach (var item in ViewBag.baove)
+		{
+			<div class="additional-content" style="margin-top:35px">
+				<div class="image-container">
+					<img src="~/Img/@item.Avata" alt="" style="margin-right: 160px;width: 800px;">
+				</div>
+				<h1 style="margin-top: 30px;">@item.ServiceName</h1>
+				<hr>
+				<p>@item.Description</p>
+				<h5>Tổ tư vấn liên hệ: 0988888888</h5>
+				<h5>Chi Nhánh 1: 285 Đội Cấn - Ba Đình - Hà Nội</h5>
+			</div>
+		}
+	}
+</section>

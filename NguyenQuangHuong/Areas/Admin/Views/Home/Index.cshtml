@@ -1,0 +1,69 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+}
+
+@if (ViewData["tong"] != null)
+{
+	<h1>Tổng Doanh Thu: @ViewData["tong"] VND</h1>
+}
+
+@{
+	var sapxepList = (IEnumerable<NguyenQuangHuong.Models.Servicess>)ViewData["sapxep"];
+	var serializedSapxep = Newtonsoft.Json.JsonConvert.SerializeObject(sapxepList);
+}
+
+
+@if (ViewData["sapxep"] != null)
+{
+	<h3>Dịch Vụ Được Đặt Nhiều Nhất:</h3>
+	<canvas id="barChart"></canvas>
+
+	<!-- JavaScript để vẽ biểu đồ cột -->
+	<script>
+		// Lấy dữ liệu từ ViewData
+		var data = @Html.Raw(serializedSapxep);
+
+		// Tạo mảng chứa tên dịch vụ và số lần đặt tương ứng
+		var labels = [];
+		var views = [];
+
+		for (var i = 0; i < data.length; i++) {
+			labels.push(data[i].ServiceName);
+			views.push(data[i].Views);
+		}
+
+		// Lấy thẻ canvas và vẽ biểu đồ cột
+		var ctx = document.getElementById('barChart').getContext('2d');
+		var barChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: [{
+					label: 'Số lần đặt',
+					data: views,
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 2
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						stepSize: 2,   // Chia các mốc thành các số nguyên
+						precision: 0   // Chỉ hiển thị số nguyên (không có số thập phân)
+					}
+				}
+			}
+		});
+	</script>
+}
+
+
+
+
+
+<h1>@ViewData["Err"]</h1>

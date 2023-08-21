@@ -1,0 +1,79 @@
+﻿@model NguyenQuangHuong.Models.Chat
+<style>
+	.outer-container {
+		width: 25%;
+		height: auto;
+		border: 1px solid black;
+		display: flex;
+		flex-direction: column; /* Dàn layout dọc */
+		box-sizing: border-box; /* Áp dụng box-sizing cho phần tử cha */
+	}
+
+	.inner-container {
+		display: flex;
+		/*padding: 10px;*/
+		border: 1px black solid;
+	}
+
+	.left-div {
+		width: 15%; /* Chia đều kích thước */
+		padding: 10px;
+		box-sizing: border-box; /* Áp dụng box-sizing cho phần tử con */
+	}
+
+	img {
+		border: 1px solid #ccc;
+		border-radius: 50%;
+		padding: 0px;
+		width: 50px;
+		height: 50px;
+		object-fit: cover;
+	}
+
+	.right-div {
+		width: 100%; /* Chia đều kích thước */
+		padding: 10px;
+		box-sizing: border-box; /* Áp dụng box-sizing cho phần tử con */
+		margin-top: 10px;
+	}
+
+	.input-container {
+		padding: 10px;
+	}
+
+</style>
+<div style="width: 25%;
+		height: auto;
+		border: 1px solid black;
+		display: flex;
+		flex-direction: column; /* Dàn layout dọc */
+		box-sizing: border-box; /* Áp dụng box-sizing cho phần tử cha */
+		display:none">
+	<div style="display: flex;
+		/*padding: 10px;*/
+		border: 1px black solid;">
+		<div style="width: 15%; /* Chia đều kích thước */
+		padding: 10px;
+		box-sizing: border-box; /* Áp dụng box-sizing cho phần tử con */">
+			<img style="border: 1px solid #ccc;
+		border-radius: 50%;
+		padding: 0px;
+		width: 50px;
+		height: 50px;
+		object-fit: cover;" src="~/Img/Avata/admin.jpg" alt="Avatar" />
+		</div>
+		<div style="width: 100%; /* Chia đều kích thước */
+		padding: 10px;
+		box-sizing: border-box; /* Áp dụng box-sizing cho phần tử con */
+		margin-top: 10px;">
+			Nguyễn Quang Hướng
+		</div>
+	</div>
+	<div style="border:1px black solid">
+		Nội dung
+	</div>
+	<div style="padding: 10px;">
+		<input />
+		<input type="submit" />
+	</div>
+</div>

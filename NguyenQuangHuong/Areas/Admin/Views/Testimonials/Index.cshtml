@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Testimonial>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="text-align:center">Danh Sách Bình Luận</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-danger">Thêm Bình Luận Mới</a>
+</p>
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestimonialText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountsUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestimonialText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountsUser.FullName)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.TestimonialId" class="btn btn-danger">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TestimonialId" class="btn btn-danger">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TestimonialId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

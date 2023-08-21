@@ -1,0 +1,165 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Business>
+@{
+	ViewData["Title"] = "Home Page";
+	var number = 1;
+}
+
+<video autoplay loop muted>
+	<source src="https://starsecurity.ae/wp-content/uploads/2023/04/banner_video_new.mp4" type="video/mp4">
+	<!-- Thêm các định dạng video khác nếu cần -->
+</video>
+
+<section class="welcome_section layout_padding">
+	<div class="container-fluid">
+		<div class="row">
+			<div class=" col-md-6">
+				<div>
+					<img class="img-fluid" src="~/Img/imguser/dong-phuc-bao-ve-nha-hang.jpg" alt="" />
+				</div>
+			</div>
+			<div class=" col-md-6">
+				<div class="welcome_detail">
+					<h5 style="color:#eb8111">
+						- Dịch Vụ Bảo Vệ Ngôi Sao
+					</h5>
+					<form style="vertical-align: inherit;font-size:29px;text-transform: uppercase;"><b>Chuyên môn vô song từ các chuyên gia bảo mật có kinh nghiệm trên toàn thế giới</b></form>
+					<p>
+						Star Security Services đã cung cấp các dịch vụ bảo vệ chuyên
+						nghiệp được công nhận trong ngành và được ISO công nhận trong hơn 15 năm.
+						Đội ngũ chuyên gia an ninh được đào tạo chuyên sâu của chúng tôi bao gồm các nhân viên
+						có kinh nghiệm từ nhiều quốc gia khác nhau trên toàn thế giới, nền tảng và kiến ​​thức về
+						an ninh của họ thường là phần mở rộng của nghề nghiệp trước đây của họ trong lực
+						lượng quân đội và cảnh sát của quốc gia sở tại. Chính sách tuyển dụng và tiêu chuẩn
+						đào tạo cao của chúng tôi, được phê duyệt bởi các cơ quan quản lý và cơ quan quản lý
+						như Cục Dịch vụ An ninh Phụ trợ (ASSD) Abu Dhabi và Cơ quan Quản lý Công nghiệp An ninh
+						(SIRA) Dubai, đảm bảo rằng nhân viên bảo vệ của chúng tôi là những cá nhân có trình độ và
+						kinh nghiệm nhất. bạn có thể phụ thuộc vào.
+					</p>
+					<div class="huong">
+						<div class="left-div">
+							<div style="overflow: hidden; text-overflow: ellipsis;">
+								<h3>Tầm nhìn</h3>
+								<p>Trở thành sự lựa chọn hàng đầu của khách hàng đối với các dịch vụ bảo vệ tại Các Tiểu vương quốc Ả Rập.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="service_section ">
+	<div class="container">
+		<div class="service_detail">
+			<h2>
+				Chúng Tôi Cung Cấp Dịch Vụ
+			</h2>
+		</div>
+		<div class="service_img-container">
+			@foreach (var item in Model)
+			{
+				if (number != 3)
+				{
+					<div class="service_img-box i-box-2" style="background-image: url(../Img/@item.Thumbnail);">
+						<a asp-action="BaoveUser" asp-controller="Home" asp-route-id="@item.Id">@item.BusinesName</a>
+					</div>
+				}
+				else
+				{
+					<div class="service_img-box i-box-1" style="background-image: url(../Img/@item.Thumbnail);">
+						<a asp-action="BaoveUser" asp-controller="Home" asp-route-id="@item.Id">@item.BusinesName</a>
+					</div>
+				}
+				number++;
+			}
+		</div>
+		
+		
+		@*mai lam not *@
+		<div class="service_btn">
+			<a href="">
+				<span>
+					Đọc Thêm
+				</span>
+				<img src="~/Img/imguser/arrow-black.png" alt="" class="ml-2" />
+			</a>
+		</div>
+	</div>
+</section>
+
+<div class="recent-listing">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="path">
+					<div class="path_title">
+						<div>Những Nhân Viên Ưu Tú</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12 all_realties">
+				@foreach (var item in ViewBag.employees)
+				{
+					<div class="col-lg-4">
+						<div class="itemm">
+							<div class="itemm_img">
+								<img src="~/Img/Avata/@item.Avata" style="width: 100%;object-fit: cover;" />
+							</div>
+							<div class="itemm_content">
+								<div class="itemm_title">
+									@item.FullName
+								</div>
+								<div class="itemm_info">
+									<span class="itemm_info_price">Dịch Vụ: @item.Department.Location</span>
+								</div>
+								<div class="itemm_address">
+									<i style="color:black" class="fa-solid fa-location-dot"></i>
+									@item.Branch.BranchName
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="layout_padding story_section">
+	<div class="container-fluid">
+		<div class="row">
+			<div class=" col-md-6">
+				<div>
+					<img class="img-fluid" src="~/Img/imguser/security.jpg" alt="" />
+				</div>
+			</div>
+			<div class=" col-md-6">
+				<div class="story_detail">
+					<h3>
+						Giới Thiệu
+					</h3>
+					<p>
+						Chúng tôi là một công ty chuyên nghiệp cung cấp các phương án bảo mật tùy chỉnh cho các doanh nghiệp công nghiệp, thương mại và kinh doanh.
+
+						Star Securities đã là một trong những người tiên phong trong ngành Bảo vệ Tư nhân. Được thành lập vào năm 2000, công ty đã trở thành một nhà lãnh đạo suy nghĩ và kiến thức từ khi thành lập. Qua thập kỷ tồn tại, Star đã nỗ lực cung cấp những giải pháp bảo mật tốt nhất cho khách hàng thông qua sự đổi mới, cam kết về chất lượng, đào tạo và tuân thủ nghiêm ngặt các tiêu chuẩn quốc tế.
+
+						Bắt đầu như một công ty điều tra gần 10 năm trước, ngày nay công ty đã phát triển thành một "Nhà cung cấp Giải pháp Bảo mật Toàn diện" cung cấp dịch vụ bảo vệ trực người (MG), điều tra (C&I), hệ thống an ninh điện tử (ESS) và dịch vụ tiền mặt (CS) cho hơn 250 khách hàng doanh nghiệp trên 24 bang.
+					</p>
+					<div class="story_detail-btn">
+						<a href="">
+							<span>
+								Đọc Thêm
+							</span>
+							<img src="~/Img//imguser/arrow-black.png" alt="" class="ml-2" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+

@@ -1,0 +1,73 @@
+﻿
+<header class="header_section">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg custom_nav-container ">
+			<a class="navbar-brand" href="#">
+				<div class="logo_box">
+					@* <img src="~/Img/imguser/security.png" />*@
+					<h5 style="color:white">STAR SECURITY SERVICES</h5>
+				</div>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto mr-2">
+					<li class="nav-item active">
+						<a class="nav-link" asp-action="Index" asp-controller="Home" asp-area="">Trang Chủ <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-action="Dichvu" asp-controller="Home">Dịch Vụ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-action="Tuyennhansu" asp-controller="Home">Tuyển Dụng</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-action="News" asp-controller="Home">Blog</a>
+					</li>
+					@*@if (User.Identity.IsAuthenticated && User.Claims.FirstOrDefault(c => c.Type == "idusser")?.Value != null)
+					{
+					<li class="nav-item">
+					<a class="nav-link" asp-action="order" asp-controller="Home">Đã Đặt</a>
+					</li>
+					}
+					else
+					{
+					<li></li>
+					}*@
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control nav_search-input mr-sm-2 d-none" type="search" placeholder="Search"
+						   aria-label="Search" value="" />
+					<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+				</form>
+				@if (User.Identity.IsAuthenticated && User.Claims.FirstOrDefault(c => c.Type == "permission").Value.Equals("user"))
+				{
+					<div class="image">
+						<img onclick="showUserList()" src="~/Img/Avata/@User.Claims.FirstOrDefault(c => c.Type == "avatar").Value" style="border: 1px solid #ccc;border-radius: 50%;padding: 0px;width: 50px;height: 50px;margin-top: -10px;margin-left: 140px;object-fit: cover;" class="img-circle elevation-2" alt="User Image">
+					</div>
+					<div id="userList" style="display: none;z-index:10">
+						<ul>
+							<a class="nav-link" asp-action="Hoso" asp-controller="Home">
+							<li>Hồ Sơ</li></a>
+							<a class="nav-link" asp-action="order" asp-controller="Home">
+							<li>Đã Đặt</li></a>
+							<a asp-action="Logout" class="nav-link" asp-controller="Home">
+							<li>Đăng xuất</li></a>
+						</ul>
+					</div>
+				}
+				else
+				{
+					<ul class="navbar-nav ml-auto mr-2">
+						<li class="nav-item">
+							<a class="nav-link" asp-action="Dangnhap" asp-controller="Home">Login </a>
+						</li>
+					</ul>
+				}
+			</div>
+		</nav>
+	</div>
+</header>
