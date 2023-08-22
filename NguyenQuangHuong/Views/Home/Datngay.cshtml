@@ -21,23 +21,20 @@
 						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 						<input hidden value="@ViewBag.id" name="idServicess" />
 						<div class="form-group row">
-							<label class="col-sm-2 col-form-label" style="margin-left:-15px" asp-for="BookingDate" class="control-label"></label>
-							<input style="margin-left:97px;width: 290px;" style="margin-left:20px" asp-for="BookingDate" class="form-control" />
+							<label asp-for="BookingDate" class="control-label"></label>
+							<input style="margin-left:70px;width: 290px;" asp-for="BookingDate" class="form-control" id="BookingDate" oninput="updatePrice()" />
 							<span asp-validation-for="BookingDate" class="text-danger"></span>
 							@ViewData["Errdate"]
 						</div>
-						<div class=" form-group row">
+						<div class="form-group row">
 							<label asp-for="EndBookingDate" class="control-label"></label>
-							<input style="margin-left:40px;width: 290px;" asp-for="EndBookingDate" class="form-control" />
+							<input style="margin-left:40px;width: 290px;" asp-for="EndBookingDate" class="form-control" id="EndBookingDate" oninput="updatePrice()" />
 							<span asp-validation-for="EndBookingDate" class="text-danger"></span>
 							@ViewData["Errdate"]
 						</div>
-						<div class="form-group row">
-							<label asp-for="NumberOfGuards" class="control-label"></label>
-							<input style="margin-left:32px;width: 290px;" asp-for="NumberOfGuards" class="form-control" onchange="updatePrice()" />
-							<span asp-validation-for="NumberOfGuards" class="text-danger"></span>
-							@ViewData["Err"]
-						</div>
+						@*Bằng cách thêm sự kiện oninput vào các trường nhập ngày, hàm updatePrice() sẽ được gọi mỗi khi người dùng thay đổi giá trị, và giá tiền sẽ được tính toán và hiển thị trong trường Price.*@
+						<input hidden name="priceServiec" value="@ViewBag.price" />
+						<input hidden name="package" value="@ViewBag.package" />
 						Price: <input style="margin-left: 105px;" id="Price" name="price"><span>VND</span>
 						<input class="btn btn-primary" type="submit" value="Finish" />
 					</div>
@@ -53,13 +50,9 @@ else
 }
 <script>
 	function updatePrice() {
-		var numberOfGuardsInput = document.getElementById("NumberOfGuards");
 		var priceSpan = document.getElementById("Price");
 		var bookingDateInput = document.getElementById("BookingDate");
 		var endBookingDateInput = document.getElementById("EndBookingDate");
-
-		// Lấy giá trị số từ trường NumberOfGuards
-		var numberOfGuards = parseInt(numberOfGuardsInput.value);
 
 		// Lấy ngày bắt đầu thuê và ngày kết thúc thuê
 		var bookingDate = new Date(bookingDateInput.value);
@@ -68,21 +61,18 @@ else
 		// Tính số ngày thuê
 		var numberOfDays = Math.ceil((endBookingDate - bookingDate) / (1000 * 60 * 60 * 24));
 
-		// Giả sử giá mỗi guard là 600000 đồng/ngày
-		var pricePerGuard = 600000;
+		// Thay đổi biến pricePerGuard thành priceServiec
+		var priceServiec = parseFloat(document.querySelector('input[name="priceServiec"]').value);
 
-		// Tính giá tiền dựa trên số ngày thuê, số lượng người bảo vệ và giá mỗi ngày
-		var price = pricePerGuard * numberOfDays * numberOfGuards;
-
-		// Nếu số ngày thuê là 2, nhân đôi giá tiền
-		//if (numberOfDays === 2) {
-		//	price *= 2;
-		//}
+		// Tính giá tiền dựa trên số ngày thuê và giá mỗi ngày
+		var price = priceServiec * numberOfDays;
 
 		// Hiển thị giá trị trong trường Price
 		priceSpan.value = price;
 	}
 </script>
+
+
 @if (TempData["SuccessMessage"] != null)
 {
 	<script>
@@ -90,72 +80,3 @@ else
 		window.location.href = '/Home/Index';
 	</script>
 }
-
-@*<div class="row">
-	<div class="col-md-4">
-		<form asp-action="Datngay">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<input hidden value="@ViewBag.id" name="idServicess" />
-			<div class="form-group">
-				<label asp-for="BookingDate" class="control-label"></label>
-				<input asp-for="BookingDate" class="form-control" />
-				<span asp-validation-for="BookingDate" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="EndBookingDate" class="control-label"></label>
-				<input asp-for="EndBookingDate" class="form-control" />
-				<span asp-validation-for="EndBookingDate" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="NumberOfGuards" class="control-label"></label>
-				<input asp-for="NumberOfGuards" class="form-control" onchange="updatePrice()" />
-				<span asp-validation-for="NumberOfGuards" class="text-danger"></span>
-			</div>
-			Price: <input id="Price" name="price"><span>VND</span>
-			<div>
-				@ViewData["Err"]
-				@ViewData["Errdate"]
-			</div>
-			<div class="form-group">
-				<input type="submit" value="Create" class="btn btn-primary" />
-			</div>
-		</form>
-	</div>
-</div>
-<h2>@TempData["SuccessMessage"]</h2>
-
-@section Scripts{
-	<script>
-		function updatePrice() {
-			var numberOfGuardsInput = document.getElementById("NumberOfGuards");
-			var priceSpan = document.getElementById("Price");
-			var bookingDateInput = document.getElementById("BookingDate");
-			var endBookingDateInput = document.getElementById("EndBookingDate");
-
-			// Lấy giá trị số từ trường NumberOfGuards
-			var numberOfGuards = parseInt(numberOfGuardsInput.value);
-
-			// Lấy ngày bắt đầu thuê và ngày kết thúc thuê
-			var bookingDate = new Date(bookingDateInput.value);
-			var endBookingDate = new Date(endBookingDateInput.value);
-
-			// Tính số ngày thuê
-			var numberOfDays = Math.ceil((endBookingDate - bookingDate) / (1000 * 60 * 60 * 24));
-
-			// Giả sử giá mỗi guard là 600000 đồng/ngày
-			var pricePerGuard = 600000;
-
-			// Tính giá tiền dựa trên số ngày thuê, số lượng người bảo vệ và giá mỗi ngày
-			var price = pricePerGuard * numberOfDays * numberOfGuards;
-
-			// Nếu số ngày thuê là 2, nhân đôi giá tiền
-			//if (numberOfDays === 2) {
-			//	price *= 2;
-			//}
-
-			// Hiển thị giá trị trong trường Price
-			priceSpan.value = price;
-		}
-	</script>
-}*@
-

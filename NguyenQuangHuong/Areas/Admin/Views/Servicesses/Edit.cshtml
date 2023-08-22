@@ -19,7 +19,7 @@
 				<input asp-for="ServiceName" class="form-control" />
 				<span asp-validation-for="ServiceName" class="text-danger"></span>
 			</div>
-			<img class="main_img" src="~/Img/@Model.Avata" width="400px"/>
+			<img class="main_img" src="~/Img/@Model.Avata" width="400px" />
 			<div class="btn_chon_anh">
 				<input class="form-control" type="file" name="img" hidden accept="image/*" id="avatar-input">
 				<input id="avatar-file-name" hidden class="text-muted form-control" asp-for="Avata" />
@@ -36,9 +36,19 @@
 				<span asp-validation-for="Numberofprople" class="text-danger"></span>
 			</div>
 			<div class="form-group">
+				<label asp-for="Views" class="control-label"></label>
+				<input asp-for="Views" class="form-control" />
+				<span asp-validation-for="Views" class="text-danger"></span>
+			</div>
+			<div class="form-group">
 				<label asp-for="Description" class="control-label"></label>
 				<input asp-for="Description" class="form-control" />
 				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Package" class="control-label"></label>
+				<input asp-for="Package" class="form-control" />
+				<span asp-validation-for="Package" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="BusinesId" class="control-label"></label>

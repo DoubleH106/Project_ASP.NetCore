@@ -21,6 +21,8 @@ public partial class Servicess
 
     public int? Views { get; set; }
 
+    public int? Package { get; set; }
+
     public virtual Business? Busines { get; set; }
 
     public virtual ICollection<ServiceBooking> ServiceBookings { get; set; } = new List<ServiceBooking>();

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<NguyenQuangHuong.Models.Servicess>
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	.bigDiv {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.div1 {
+		width: 360px;
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin: 10px;
+		box-sizing: border-box;
+		text-align: center; /* Canh giữa nội dung trong div */
+	}
+
+		.div1 img {
+			width: 100%;
+			height: 200px; /* Đặt chiều cao cố định cho ảnh */
+			object-fit: cover;
+		}
+
+		/* Canh giữa các thông tin trong div */
+		.div1 p {
+			margin: 5px 0;
+		}
+</style>
+<div>
+	<div class="bigDiv">
+		@foreach (var item in Model)
+		{
+			<div class="div1">
+				<form asp-action="Datngay" asp-controller="Home" method="Get">
+					<input hidden value="@item.ServiceId" name="id" />
+					<img src="~/Img/@item.Avata" alt="Product 1">
+					<p>Tên Dịch Vụ: @item.ServiceName</p>
+					<p class="price">Tiền: @item.ServicePrice VND</p>
+					<p class="number">Số người: @item.Package người</p>
+					<input type="submit" value="Đặt Ngay" />
+				</form>
+			</div>
+		}
+	</div>
+</div>
+

@@ -286,6 +286,7 @@ public partial class Project3Nhom2Context : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.BusinesId).HasColumnName("businesID");
             entity.Property(e => e.Numberofprople).HasColumnName("numberofprople");
+            entity.Property(e => e.Package).HasColumnName("package");
             entity.Property(e => e.ServiceName)
                 .HasMaxLength(100)
                 .HasColumnName("Service_Name");

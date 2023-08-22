@@ -79,7 +79,7 @@ namespace NguyenQuangHuong.Areas.Admin.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("ServiceId,ServiceName,Avata,ServicePrice,Numberofprople,Description,BusinesId,TestimonialId")] Servicess servicess, IFormFile img)
+		public async Task<IActionResult> Create([Bind("ServiceId,ServiceName,Avata,ServicePrice,Numberofprople,Description,BusinesId,TestimonialId,Package")] Servicess servicess, IFormFile img)
 		{
 			if (ModelState.IsValid)
 			{
@@ -94,6 +94,7 @@ namespace NguyenQuangHuong.Areas.Admin.Controllers
 						await img.CopyToAsync(fileStream);
 					}
 					servicess.Avata = /*"/img/" +*/ uniqueFileName;
+					servicess.Views = 0;
 				}
 				_context.Add(servicess);
 				await _context.SaveChangesAsync();
@@ -125,7 +126,7 @@ namespace NguyenQuangHuong.Areas.Admin.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("ServiceId,ServiceName,Avata,ServicePrice,Numberofprople,Description,BusinesId,TestimonialId")] Servicess servicess,IFormFile img)
+		public async Task<IActionResult> Edit(int id, [Bind("ServiceId,ServiceName,Avata,ServicePrice,Numberofprople,Description,BusinesId,TestimonialId")] Servicess servicess)
 		{
 			if (id != servicess.ServiceId)
 			{
@@ -136,18 +137,6 @@ namespace NguyenQuangHuong.Areas.Admin.Controllers
 			{
 				try
 				{
-					if (img != null && img.Length > 0)
-					{
-						string uploadsFolder = Path.Combine(_environment.WebRootPath, "img");
-						string uniqueFileName = /*Guid.NewGuid().ToString() + "_" + */img.FileName;
-						string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-						using (var fileStream = new FileStream(filePath, FileMode.Create))
-						{
-							await img.CopyToAsync(fileStream);
-						}
-						servicess.Avata = /*"/img/" +*/ uniqueFileName;
-					}
 					_context.Update(servicess);
 					await _context.SaveChangesAsync();
 				}
