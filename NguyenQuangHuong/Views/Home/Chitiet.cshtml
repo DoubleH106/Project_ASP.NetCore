@@ -62,11 +62,7 @@
 					<h5 style="line-height:30px">
 						@Model.Description
 					</h5>
-					@if (Model.BusinesId == 1)
-					{
-						<a asp-action="Datngay" asp-controller="Home" asp-route-id="@Model.ServiceId" class="btn btn-outline-danger">Đặt Dịch Vụ</a>
-					}
-					else
+					@if (Model.BusinesId != 1)
 					{
 						<a onclick="showForm()" class="btn btn-outline-danger">Đặt Dịch Vụ</a>
 						<div id="b1" style="display:none">
